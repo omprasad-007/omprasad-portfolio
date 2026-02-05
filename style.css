@@ -14,12 +14,12 @@
   --shadow-color: hsla(220, 40%, 4%, 0.4);
   --glow-color: hsla(300, 100%, 70%, 0.6);
 
-  /* Typography */
+  /* Typography - Fluid Sizing */
   --ff-primary: 'Poppins', sans-serif;
   --ff-secondary: 'Space Grotesk', sans-serif;
-  --fs-h1: 3rem;
-  --fs-h2: 2rem;
-  --fs-h3: 1.25rem;
+  --fs-h1: clamp(2.5rem, 5vw + 1rem, 4rem);
+  --fs-h2: clamp(1.75rem, 3vw + 1rem, 2.5rem);
+  --fs-h3: clamp(1.2rem, 2vw + 1rem, 1.5rem);
   --fs-normal: 1rem;
   --fw-medium: 500;
   --fw-semibold: 600;
@@ -27,7 +27,7 @@
 
   /* Spacing */
   --header-height: 4.5rem;
-  --section-padding: 6rem 2rem;
+  --section-padding: clamp(4rem, 5vw, 6rem) 2rem;
   --card-padding: 1.5rem;
   --border-radius: 1rem;
 }
@@ -57,6 +57,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -66,12 +67,14 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   transition: background-color 0.4s, color 0.4s;
+  overflow-x: hidden;
 }
 
 h1, h2, h3 {
   font-family: var(--ff-secondary);
   font-weight: var(--fw-bold);
   color: var(--text-color);
+  line-height: 1.2;
 }
 
 ul {
@@ -142,6 +145,7 @@ section {
     height: 100%;
     overflow: hidden;
     z-index: -1;
+    pointer-events: none; /* Ensure clicks pass through */
 }
 .blob {
     position: absolute;
@@ -190,7 +194,8 @@ section {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1.5rem 5%;
+    height: var(--header-height);
+    padding: 0 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -211,9 +216,10 @@ section {
 
 .logo {
     font-family: var(--ff-secondary);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: var(--fw-bold);
     color: var(--primary-color);
+    z-index: 101; /* Above mobile menu */
 }
 
 .navbar a {
@@ -229,16 +235,31 @@ section {
     color: var(--primary-color);
 }
 
+/* Mobile Social Icons - Hidden on Desktop */
+.mobile-social {
+    display: none;
+}
+
 .menu-icon {
     display: none;
     cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    z-index: 101; /* Above mobile menu */
+    transition: color 0.3s;
+}
+
+.menu-icon:hover {
+    color: var(--primary-color);
 }
 
 
 /*=============== THEME SWITCH ===============*/
 .theme-switch {
-    position: relative;
+    display: flex;
+    align-items: center;
     margin-left: 2rem;
+    z-index: 101; /* Above mobile menu */
 }
 .theme-toggle-checkbox {
     display: none;
@@ -272,6 +293,8 @@ section {
 }
 .sun-icon, .moon-icon {
     color: var(--primary-color);
+    width: 14px;
+    height: 14px;
 }
 
 
@@ -284,20 +307,21 @@ section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    z-index: 10;
+    z-index: 100;
     background: var(--card-bg-color);
-    padding: 0.5rem;
+    padding: 0.6rem 0.4rem;
     border-radius: 0 0.5rem 0.5rem 0;
     border: 1px solid var(--border-color);
     border-left: none;
     backdrop-filter: blur(5px);
+    transition: transform 0.3s;
 }
 .social-icons a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     color: var(--primary-color);
     transition: all 0.3s;
     border-radius: 50%;
@@ -316,16 +340,19 @@ section {
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 6rem 1rem 2rem 1rem; /* Adjust padding due to fixed header */
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
+    width: 100%;
 }
 
 .hero-content h1 {
     font-size: var(--fs-h1);
     font-weight: var(--fw-bold);
     line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 .hero-content h3 {
@@ -339,6 +366,7 @@ section {
     font-size: var(--fs-normal);
     max-width: 600px;
     margin: 0 auto 1.5rem;
+    padding: 0 1rem;
 }
 
 .hero-subtext {
@@ -361,7 +389,7 @@ section {
 
 /*=============== ABOUT SECTION ===============*/
 .about-container {
-    max-width: 768px;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
 }
@@ -375,15 +403,17 @@ section {
 .about-content h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
+    font-size: var(--fs-h3);
 }
 
 
 /*=============== SKILLS SECTION ===============*/
 .skills-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Responsive grid using minmax & min() for small screens */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
     gap: 2rem;
-    max-width: 968px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 .skill-card {
@@ -394,6 +424,11 @@ section {
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     backdrop-filter: blur(10px);
+    height: 100%; /* Equal height cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .skill-card:hover {
     transform: translateY(-5px);
@@ -411,10 +446,11 @@ section {
 }
 .skill-bar {
     width: 100%;
-    height: 8px;
+    height: 6px;
     background-color: var(--border-color);
     border-radius: 4px;
     overflow: hidden;
+    margin-top: auto; /* Push to bottom if content varies */
 }
 .skill-per {
     display: block;
@@ -431,7 +467,7 @@ section {
 
 /*=============== PROJECTS SECTION ===============*/
 .projects-slider {
-    max-width: 968px;
+    max-width: 1100px;
     margin: 0 auto;
     padding-bottom: 3rem; /* Space for pagination */
 }
@@ -445,6 +481,7 @@ section {
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(10px);
+    height: auto;
 }
 
 .project-card:hover {
@@ -453,7 +490,8 @@ section {
 }
 
 .project-image-wrapper {
-    height: 220px;
+    width: 100%;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -478,11 +516,13 @@ section {
 .project-content h3 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    font-size: var(--fs-h3);
 }
 
 .project-content p {
     flex-grow: 1;
     margin-bottom: 1rem;
+    font-size: 0.95rem;
     color: var(--text-color-light);
 }
 
@@ -496,9 +536,9 @@ section {
 .tech-stack span {
     background: var(--border-color);
     color: var(--text-color);
-    padding: 0.25rem 0.75rem;
+    padding: 0.25rem 0.6rem;
     border-radius: 0.25rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 .project-links {
@@ -513,6 +553,7 @@ section {
     font-weight: var(--fw-medium);
     color: var(--primary-color);
     transition: color 0.3s;
+    font-size: 0.9rem;
 }
 
 .btn-link:hover {
@@ -545,9 +586,9 @@ section {
 /*=============== GROWTH & LEARNING SECTION ===============*/
 .growth-container, .goals-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 2rem;
-    max-width: 968px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 .growth-item, .goal-item {
@@ -556,6 +597,7 @@ section {
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     text-align: center;
+    height: 100%;
 }
 .growth-icon {
     width: 48px;
@@ -578,7 +620,7 @@ section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
-    max-width: 968px;
+    max-width: 1100px;
     margin: 0 auto;
     align-items: flex-start;
 }
@@ -610,6 +652,7 @@ section {
     width: 24px;
     height: 24px;
     margin-top: 0.25rem;
+    flex-shrink: 0;
 }
 
 .contact-item-title {
@@ -622,6 +665,7 @@ section {
 .contact-item span {
     color: var(--text-color);
     transition: color 0.3s;
+    word-break: break-all; /* Ensure emails/long text don't overflow */
 }
 
 .contact-item a:hover {
@@ -644,6 +688,7 @@ section {
     font-family: var(--ff-primary);
     transition: border-color 0.3s;
     resize: none;
+    font-size: 0.95rem;
 }
 
 .contact-form-input:focus {
@@ -670,61 +715,169 @@ section {
 
 
 /*=============== MEDIA QUERIES ===============*/
-@media screen and (max-width: 992px) {
+
+/* For large devices */
+@media screen and (max-width: 1200px) {
     :root {
-        --fs-h1: 2.5rem;
-        --fs-h2: 1.75rem;
+         --section-padding: 5rem 1.5rem;
     }
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        font-size: 0.95rem;
-    }
-    .menu-icon {
-        display: block;
-    }
-    .navbar {
-        position: fixed;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg-color);
-        padding: 4rem 0 2rem;
-        text-align: center;
-        transition: top 0.4s;
-        box-shadow: 0 5px 15px var(--shadow-color);
-    }
-    .navbar.show {
-        top: var(--header-height);
-    }
-    .navbar a {
-        display: block;
-        margin: 1.5rem 0;
-    }
-    .header {
-        padding: 1rem 5%;
-    }
-    .hero {
-        padding: 0 2rem;
-    }
+/* For tablets and smaller desktops */
+@media screen and (max-width: 992px) {
     .contact-container {
         grid-template-columns: 1fr;
     }
-    .social-icons {
-        right: 1rem;
-        bottom: 1rem;
+    
+    .contact-info {
+        order: 2; /* Put contact info below form on mobile/tablet */
+    }
+
+    .contact-form {
+        order: 1;
     }
 }
 
+/* For tablets and mobiles */
+@media screen and (max-width: 768px) {
+    body {
+        padding-bottom: 3.5rem; /* Space for bottom nav if we moved social icons there, or just breathing room */
+    }
+
+    /* Navbar turns into a mobile drawer/menu */
+    .menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: fixed;
+        top: -100vh;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(13, 12, 34, 0.95); /* Deep dark bg */
+        backdrop-filter: blur(20px);
+        padding: 5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: top 0.4s ease-in-out;
+        z-index: 99; /* Below header */
+    }
+
+    [data-theme='light'] .navbar {
+         background: rgba(249, 249, 249, 0.95);
+    }
+
+    .navbar.show {
+        top: 0;
+    }
+
+    .navbar a {
+        display: block;
+        margin: 1.5rem 0;
+        font-size: 1.5rem;
+        margin-left: 0;
+    }
+
+    /* Hide sidebar social icons and show them somewhere else or adjust */
+    .social-icons {
+        display: none; 
+    }
+    
+    /* Mobile social container */
+    .mobile-social {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .mobile-social a {
+        width: 40px;
+        height: 40px;
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s;
+    }
+    
+    .mobile-social a:hover {
+        background: var(--primary-color);
+        color: #fff;
+        border-color: var(--primary-color);
+    }
+    
+    .mobile-social a i {
+        width: 20px;
+        height: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* For small mobile devices */
 @media screen and (max-width: 576px) {
     .btn-group {
         flex-direction: column;
+        width: 100%;
     }
-    .projects-container {
-        grid-template-columns: 1fr;
+    
+    .btn {
+        width: 100%;
+        text-align: center;
     }
-    section {
-        padding: 4rem 1rem;
+
+    .projects-slider {
+        padding-bottom: 3rem;
+    }
+    
+    .project-image-wrapper {
+        height: 160px;
+    }
+    
+    .about-content, .contact-form-input {
+        padding: 1rem;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .contact-icon {
+        margin-top: 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* For very small devices (e.g. Galaxy Fold) */
+@media screen and (max-width: 350px) {
+    :root {
+        --fs-h1: 2rem;
+    }
+    
+    .header {
+        padding: 0 1rem;
+    }
+    
+    .navbar a {
+        font-size: 1.2rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .mobile-social {
+        gap: 1rem;
     }
 }
