@@ -1,0 +1,30 @@
+# Node.js
+node_modules
+.env
+
+# Java/Gradle
+.gradle
+/build
+.idea
+.vscode
+*.iml
+
+# Python
+__pycache__/
+*.pyc
+.venv
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Gemini CLI specific
+.gemini/tmp/
+
+# Log files
+*.log
+
+# Personal files
+*.txt
