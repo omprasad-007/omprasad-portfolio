@@ -51,7 +51,6 @@ A responsive shopping platform project with attractive UI and smooth user experi
 ## 📫 Contact Me
 
 - 📧 Email: **omprasadpadwalkar007@gmail.com**
-- 📞 Phone: **+91 9405856488**
 - 💼 LinkedIn: [Omprasad Padwalkar](https://www.linkedin.com/in/omprasad-padwalkar-824224394)
 - 💻 GitHub: [omprasad-007](https://github.com/omprasad-007)
 
