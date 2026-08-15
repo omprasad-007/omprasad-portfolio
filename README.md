@@ -35,7 +35,7 @@ Hi, I'm **Omprasad Bhaskar Padwalkar**
 | :---: | :--- | :--- | :--- | :---: |
 | <img src="assets/images/securepay-ai-logo.jpg" width="220" alt="SecurePay AI Logo"/> | **SecurePay AI** | An AI-powered secure payment & fraud prevention platform designed for safer digital transactions. | `AI` `Security` `FinTech` `UX` | [🔗 Live Demo](https://secure-pay-ai-lilac.vercel.app/) |
 | <img src="assets/images/krishisetu-logo.jpg" width="220" alt="KrishiSetu Logo"/> | **KrishiSetu - Bridge for Farmers** | Digital bridge empowering farmers with smart agritech tools, data analytics, and direct market connection. | `Agritech` `Data Science` `Web App` | [🔗 Live Demo](https://krishi-setu-bridge-for-farmers.vercel.app/) |
-| <img src="assets/images/project-portfolio.png" width="220" alt="Portfolio Website Logo"/> | **Portfolio Website** | Live personal portfolio presenting featured projects, skills, certifications viewer, and 2nd-year growth. | `HTML` `CSS` `JavaScript` `Vercel` | [🔗 Live Demo](https://omprasad-portfolio.vercel.app/) |
+| <img src="assets/images/portfolio-website-logo.jpg" width="220" alt="Portfolio Website Logo"/> | **Portfolio Website** | Live personal portfolio presenting featured projects, skills, certifications viewer, and 2nd-year growth. | `HTML` `CSS` `JavaScript` `Vercel` | [🔗 Live Demo](https://omprasad-portfolio.vercel.app/) |
 | <img src="assets/images/agroscan-ai-logo.jpg" width="220" alt="AgroScan AI Logo"/> | **AgroScan AI** | An AI plant disease detector that uses Computer Vision to identify crop health issues early. | `AI` `Computer Vision` `Agri` | ⏳ Ongoing Project |
 | <img src="assets/images/independenceday-logo.jpg" width="220" alt="80th Independence Day Logo"/> | **80th Independence Day Wishes** | Personalized patriotic wish generator celebrating 80th Independence Day with animated visuals & audio. | `Web App` `Interactive` `Animation` | [🔗 Live Demo](https://80th-independence-day-tau.vercel.app/) |
 
@@ -83,7 +83,7 @@ omprasad-portfolio/
 │       ├── omprasad-profile.jpg        # Profile Photo & Avatar
 │       ├── securepay-ai-logo.jpg       # SecurePay AI Project Logo
 │       ├── krishisetu-logo.jpg         # KrishiSetu Bridge Project Logo
-│       ├── project-portfolio.png       # Portfolio Website Preview Image
+│       ├── portfolio-website-logo.jpg  # Portfolio Website Project Logo Banner
 │       ├── agroscan-ai-logo.jpg        # AgroScan AI Project Logo
 │       ├── independenceday-logo.jpg    # 80th Independence Day Project Logo
 │       └── project-ecommerce.png       # E-Commerce Project Preview
