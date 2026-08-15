@@ -115,13 +115,29 @@ const swiper = new Swiper('.projects-slider', {
 
 /*=============== FORM SUBMISSION ===============*/
 const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // In a real application, you would add your form submission logic here (e.g., using Fetch API, EmailJS).
-    // For this demonstration, we will just show an alert and reset the form.
-    alert('Message sent successfully!');
-    contactForm.reset();
-});
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const name = (formData.get('name') || '').toString().trim();
+        const email = (formData.get('email') || '').toString().trim();
+        const message = (formData.get('message') || '').toString().trim();
+
+        if (!name || !email || !message) {
+            return;
+        }
+
+        const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+        const body = encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+        );
+
+        window.location.href = `mailto:omprasadpadwalkar007@gmail.com?subject=${subject}&body=${body}`;
+        contactForm.reset();
+    });
+}
 
 
 /*=============== ACTIVE NAV LINK ON SCROLL ===============*/
