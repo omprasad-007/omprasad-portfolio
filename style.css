@@ -229,20 +229,13 @@ section {
     font-family: var(--ff-secondary);
     font-size: 1.35rem;
     font-weight: var(--fw-bold);
-    color: var(--text-color);
+    color: var(--primary-color);
     z-index: 101; /* Above mobile menu */
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
     transition: transform 0.3s ease;
 }
 
 .logo:hover {
-    transform: scale(1.03);
-}
-
-.logo-accent {
-    color: var(--primary-color);
+    transform: scale(1.02);
 }
 
 .navbar a {
