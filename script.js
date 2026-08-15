@@ -92,7 +92,7 @@ let swiper = new Swiper('.projects-slider', {
     loop: true,
     grabCursor: true,
     centeredSlides: true,
-    slidesPerView: 'auto',
+    slidesPerView: 1,
     spaceBetween: 30,
     
     pagination: {
@@ -103,20 +103,6 @@ let swiper = new Swiper('.projects-slider', {
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
-    },
-
-    breakpoints: {
-        640: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-            spaceBetween: 40,
-        },
-        1024: {
-            slidesPerView: "auto",
-            spaceBetween: 50,
-        },
     },
 });
 
@@ -134,7 +120,7 @@ async function loadGitHubProjects() {
         'agroscan-ai': 'assets/images/agroscan-ai-logo.jpg',
         '80th_independence_day': 'assets/images/independenceday-logo.jpg',
         '80th-independence-day': 'assets/images/independenceday-logo.jpg',
-        'omprasad-portfolio': 'assets/images/project-portfolio.png'
+        'omprasad-portfolio': 'assets/images/portfolio-website-logo.jpg'
     };
 
     try {
@@ -264,15 +250,10 @@ async function loadGitHubProjects() {
             loop: true,
             grabCursor: true,
             centeredSlides: true,
-            slidesPerView: 'auto',
+            slidesPerView: 1,
             spaceBetween: 30,
             pagination: { el: '.swiper-pagination', clickable: true },
-            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-            breakpoints: {
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2, spaceBetween: 40 },
-                1024: { slidesPerView: "auto", spaceBetween: 50 }
-            }
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
         });
 
         // Re-trigger feather icons replacement for dynamic external-link / github / clock icons
