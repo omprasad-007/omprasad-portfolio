@@ -69,11 +69,12 @@ const sr = ScrollReveal({
     // reset: true // Animations repeat
 });
 
-sr.reveal('.hero-content');
+sr.reveal('.hero-container', { origin: 'top' });
 sr.reveal('.section-title, .section-subtitle', { delay: 200 });
 sr.reveal('.about-content', { origin: 'bottom' });
 sr.reveal('.skills-container .skill-card', { interval: 200 });
 sr.reveal('.projects-slider', { interval: 200 });
+sr.reveal('.cert-grid .cert-card', { interval: 150 });
 sr.reveal('.growth-container .growth-item', { interval: 200 });
 sr.reveal('.goals-container .goal-item', { interval: 200, origin: 'left' });
 sr.reveal('.contact-info', { origin: 'left' });
@@ -111,6 +112,59 @@ const swiper = new Swiper('.projects-slider', {
             spaceBetween: 50,
         },
     },
+});
+
+/*=============== CERTIFICATE MODAL LOGIC ===============*/
+const certModal = document.getElementById('cert-modal');
+const modalCertTitle = document.getElementById('modal-cert-title');
+const modalCertIframe = document.getElementById('modal-cert-iframe');
+const modalCertDriveLink = document.getElementById('modal-cert-drivelink');
+const certModalClose = document.querySelector('.cert-modal-close');
+
+const viewCertBtns = document.querySelectorAll('.view-cert-btn');
+
+viewCertBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const certCard = e.target.closest('.cert-card');
+        if (!certCard) return;
+
+        const title = certCard.getAttribute('data-title');
+        const previewUrl = certCard.getAttribute('data-preview');
+        const driveUrl = certCard.getAttribute('data-drive');
+
+        if (modalCertTitle) modalCertTitle.textContent = title;
+        if (modalCertIframe) modalCertIframe.src = previewUrl;
+        if (modalCertDriveLink) modalCertDriveLink.href = driveUrl;
+
+        if (certModal) certModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+function closeCertModal() {
+    if (certModal) {
+        certModal.classList.remove('active');
+        if (modalCertIframe) modalCertIframe.src = '';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+if (certModalClose) {
+    certModalClose.addEventListener('click', closeCertModal);
+}
+
+if (certModal) {
+    certModal.addEventListener('click', (e) => {
+        if (e.target === certModal) {
+            closeCertModal();
+        }
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && certModal && certModal.classList.contains('active')) {
+        closeCertModal();
+    }
 });
 
 /*=============== FORM SUBMISSION ===============*/
@@ -151,11 +205,15 @@ function scrollActive() {
         const sectionTop = current.offsetTop - 58; // 58px = header height
         const sectionId = current.getAttribute('id');
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelector('.navbar a[href*=' + sectionId + ']').classList.add('active');
-        } else {
-            document.querySelector('.navbar a[href*=' + sectionId + ']').classList.remove('active');
+        const navLink = document.querySelector('.navbar a[href*=' + sectionId + ']');
+        if (navLink) {
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLink.classList.add('active');
+            } else {
+                navLink.classList.remove('active');
+            }
         }
     });
 }
 window.addEventListener('scroll', scrollActive);
+
