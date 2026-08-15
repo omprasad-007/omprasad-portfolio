@@ -53,10 +53,16 @@ themeToggle.addEventListener('change', switchTheme, false);
 
 /*=============== TYPED.JS ANIMATION ===============*/
 const typed = new Typed('.typing-text', {
-    strings: ['Building.', 'Learning.', 'Growing.', 'Creating Impact.'],
-    typeSpeed: 100,
-    backSpeed: 50,
-    backDelay: 1000,
+    strings: [
+        'Data Science Engineering.',
+        'Machine Learning & AI.',
+        'Full-Stack Web Development.',
+        'Computer Vision & Analytics.',
+        'Building Real-World Solutions.'
+    ],
+    typeSpeed: 70,
+    backSpeed: 40,
+    backDelay: 1200,
     loop: true,
 });
 
