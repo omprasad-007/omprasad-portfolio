@@ -1,7 +1,21 @@
-# 🌟 Omprasad Padwalkar | Portfolio Website
+# 🌟 Omprasad Padwalkar | Personal Portfolio Website
 
-Welcome to my personal portfolio website repository!  
-This portfolio showcases my skills, projects, and journey as a growing developer and Data Science student.
+[![Portfolio Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)](https://github.com/omprasad-007/omprasad-portfolio)
+[![Tech Stack](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20JavaScript-blue.svg)](#-tech-stack)
+[![Focus](https://img.shields.io/badge/Domain-Data%20Science%20%26%20Web%20Dev-orange.svg)](#-about-me)
+
+Welcome to my personal portfolio website repository! This platform showcases my projects, technical skills, and journey as a Data Science Engineering student and developer.
+
+---
+
+## 📌 Repository Metadata & About Section
+
+To configure the **About** section on the GitHub repository sidebar:
+
+- **Description**:  
+  `Personal portfolio website of Omprasad Padwalkar showcasing SecurePay AI, Krishi Setu Bridge, AgroScan AI, and Data Science projects. Built with HTML, CSS, JavaScript & SwiperJS.`
+- **Website URL**:  
+  `https://krishi-setu-bridge-for-farmers.vercel.app/` *(or your live portfolio deployment URL)*
 
 ---
 
@@ -9,66 +23,80 @@ This portfolio showcases my skills, projects, and journey as a growing developer
 
 Hi, I'm **Omprasad Padwalkar**  
 
-🎓 First-Year Data Science Engineering Student  
-🏫 D Y Patil College of Engineering, Kolhapur  
-
-💻 Passionate about programming, web development, and data science  
-🚀 Always learning, building projects, and growing in the tech field  
+🎓 **First-Year Data Science Engineering Student** at D Y Patil College of Engineering, Kolhapur  
+💻 **Passionate Developer & Innovator** with a focus on Web Development, AI, and Data Science  
+🚀 Driven by a relentless growth mindset to build impactful real-world software applications  
 
 ---
 
-## 🛠 Skills
+## 🚀 Featured Projects
 
-- **C Programming**
-- **Python**
-- **Web Development**
-- **Data Science Foundations**
-- **Problem Solving**
-
----
-
-## 📌 Projects Included
-
-### 🌐 Portfolio Website
-A modern personal portfolio website to showcase my skills and achievements.
-
-### 🛒 E-Commerce Website
-A responsive shopping platform project with attractive UI and smooth user experience.
+| Project Logo | Project Name | Description | Tech Stack | Live Demo |
+| :---: | :--- | :--- | :--- | :---: |
+| <img src="assets/images/securepay-ai-logo.jpg" width="220" alt="SecurePay AI Logo"/> | **SecurePay AI** | An AI-powered secure payment & fraud prevention platform designed for safer digital transactions. | `AI` `Security` `FinTech` `UX` | [🔗 Live Demo](https://secure-pay-ai-lilac.vercel.app/) |
+| <img src="assets/images/krishisetu-logo.jpg" width="220" alt="Krishi Setu Logo"/> | **Krishi Setu Bridge for Farmers** | A digital bridge connecting farmers with weather forecasts, market trends, and agricultural guidance. | `AgriTech` `AI` `Web App` `Next.js` | [🔗 Live Demo](https://krishi-setu-bridge-for-farmers.vercel.app/) |
+| <img src="assets/images/independenceday-logo.jpg" width="220" alt="80th Independence Day Logo"/> | **80th Independence Day Wishes** | A personalized patriotic wish generator and greeting platform for 15 August 2026 with animated visuals & audio. | `Web App` `Interactive` `Animation` | [🔗 Live Demo](https://80th-independence-day-tau.vercel.app/) |
+| <img src="assets/images/agroscan-ai-logo.jpg" width="220" alt="AgroScan AI Logo"/> | **AgroScan AI** | An AI plant disease diagnostic platform utilizing computer vision to detect crop health issues early. | `AI` `Computer Vision` `Agri` | 🔬 In Development |
 
 ---
 
-## ✨ Features of Portfolio
+## 🛠 Tech Stack & Tools
 
-✅ Premium modern UI  
-✅ Colourful gradients & glassmorphism design  
-✅ Responsive for all devices  
-✅ Smooth animations & hover effects  
-✅ Projects showcase with cards/slides  
-✅ Contact section with social links  
+- **Frontend**: HTML5, CSS3 (Glassmorphism & Gradients), JavaScript (ES6+)
+- **Libraries & Icons**: Feather Icons, Swiper.js, Typed.js, ScrollReveal.js
+- **Core Languages**: Python, C Programming
+- **Domains**: Data Science Foundations, AI & Machine Learning, Web App Development
 
 ---
 
-## 📫 Contact Me
+## ✨ Key Portfolio Features
 
-- 📧 Email: **omprasadpadwalkar007@gmail.com**
-- 💼 LinkedIn: [Omprasad Padwalkar](https://www.linkedin.com/in/omprasad-padwalkar-824224394)
-- 💻 GitHub: [omprasad-007](https://github.com/omprasad-007)
-
----
-
-## 🚀 Future Goals
-
-- Build more real-world Data Science and AI projects  
-- Contribute to open-source  
-- Grow into a skilled software developer and data scientist  
-- Achieve internship opportunities at top companies  
+- 🎨 **Modern Aesthetic**: Glassmorphism design, vibrant dynamic gradients & dark/light theme toggle.
+- 📱 **Fully Responsive**: Optimized seamlessly across mobile, tablet, and desktop screens.
+- 🎠 **Interactive Project Carousel**: Touch-enabled Swiper.js slider with custom project cards.
+- ⚡ **Dynamic Micro-Animations**: Smooth scroll reveal effects and typing text animations.
+- 📬 **Interactive Contact Section**: Direct access to social links and email.
 
 ---
 
-## ⭐ Support
+## 📂 Folder Structure
 
-If you like my work, feel free to give this repository a ⭐!
+```
+omprasad-portfolio/
+├── assets/
+│   └── images/
+│       ├── securepay-ai-logo.jpg       # SecurePay AI Project Logo & Banner
+│       ├── krishisetu-logo.jpg         # Krishi Setu Bridge Project Logo & Banner
+│       ├── independenceday-logo.jpg    # 80th Independence Day Project Logo & Banner
+│       └── agroscan-ai-logo.jpg        # AgroScan AI Project Logo & Banner
+├── index.html                          # Main HTML Structure
+├── style.css                           # Modern CSS Styling & Responsive Rules
+├── script.js                           # Dynamic Interactivity, Theme Toggle & Swiper
+└── README.md                           # Project Documentation
+```
 
 ---
 
-### © 2026 Omprasad Padwalkar
+## ⚡ Getting Started Locally
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/omprasad-007/omprasad-portfolio.git
+   cd omprasad-portfolio
+   ```
+
+2. **Open in Browser**:
+   Double click `index.html` or open it with Live Server in VS Code.
+
+---
+
+## 📫 Connect With Me
+
+- 📧 **Email**: [omprasadpadwalkar007@gmail.com](mailto:omprasadpadwalkar007@gmail.com)
+- 💼 **LinkedIn**: [Omprasad Bhaskar Padwalkar](https://www.linkedin.com/in/omprasad-bhaskar-padwalkar-824224394)
+- 📸 **Instagram**: [@omprasad0075](https://www.instagram.com/omprasad0075)
+- 💻 **GitHub**: [omprasad-007](https://github.com/omprasad-007)
+
+---
+
+### © 2026 Omprasad Padwalkar | Built with Vision & Passion 🚀
