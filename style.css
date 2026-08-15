@@ -740,6 +740,36 @@ section {
     height: 1rem;
 }
 
+.projects-cert-btn-wrapper {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-cert-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--gradient-1));
+    color: #fff;
+    font-weight: var(--fw-semibold);
+    font-size: 1rem;
+    box-shadow: 0 4px 20px var(--glow-color);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-cert-nav:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px var(--glow-color);
+    border-color: #fff;
+}
+
 /* Swiper styles */
 .swiper-button-next,
 .swiper-button-prev {
