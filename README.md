@@ -13,9 +13,9 @@ Welcome to my personal portfolio website repository! This platform showcases my 
 To configure the **About** section on the GitHub repository sidebar:
 
 - **Description**:  
-  `Personal portfolio website of Omprasad Padwalkar showcasing SecurePay AI, Krishi Setu Bridge, AgroScan AI, and Data Science projects. Built with HTML, CSS, JavaScript & SwiperJS.`
+  `Personal portfolio website of Omprasad Padwalkar showcasing SecurePay AI, Portfolio Website, AgroScan AI, and Data Science projects. Built with HTML, CSS, JavaScript & SwiperJS.`
 - **Website URL**:  
-  `https://krishi-setu-bridge-for-farmers.vercel.app/` *(or your live portfolio deployment URL)*
+  `https://omprasad-007.github.io/omprasad-portfolio/`
 
 ---
 
@@ -34,7 +34,7 @@ Hi, I'm **Omprasad Padwalkar**
 | Project Logo | Project Name | Description | Tech Stack | Live Demo |
 | :---: | :--- | :--- | :--- | :---: |
 | <img src="assets/images/securepay-ai-logo.jpg" width="220" alt="SecurePay AI Logo"/> | **SecurePay AI** | An AI-powered secure payment & fraud prevention platform designed for safer digital transactions. | `AI` `Security` `FinTech` `UX` | [🔗 Live Demo](https://secure-pay-ai-lilac.vercel.app/) |
-| <img src="assets/images/krishisetu-logo.jpg" width="220" alt="Krishi Setu Logo"/> | **Krishi Setu Bridge for Farmers** | A digital bridge connecting farmers with weather forecasts, market trends, and agricultural guidance. | `AgriTech` `AI` `Web App` `Next.js` | [🔗 Live Demo](https://krishi-setu-bridge-for-farmers.vercel.app/) |
+| <img src="assets/images/krishisetu-logo.jpg" width="220" alt="Portfolio Website Logo"/> | **Portfolio Website** | My live personal portfolio presenting featured projects, skills, and learning journey as a developer. | `HTML` `CSS` `JavaScript` `UI` | [🔗 Live Demo](https://omprasad-007.github.io/omprasad-portfolio/) |
 | <img src="assets/images/independenceday-logo.jpg" width="220" alt="80th Independence Day Logo"/> | **80th Independence Day Wishes** | A personalized patriotic wish generator and greeting platform for 15 August 2026 with animated visuals & audio. | `Web App` `Interactive` `Animation` | [🔗 Live Demo](https://80th-independence-day-tau.vercel.app/) |
 | <img src="assets/images/agroscan-ai-logo.jpg" width="220" alt="AgroScan AI Logo"/> | **AgroScan AI** | An AI plant disease diagnostic platform utilizing computer vision to detect crop health issues early. | `AI` `Computer Vision` `Agri` | 🔬 In Development |
 
