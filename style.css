@@ -1391,15 +1391,15 @@ section {
     height: 18px;
 }
 
-/*=============== PROFESSIONAL RESUME PDF STYLING ===============*/
-#resume-template, .resume-pdf-container {
+/*=============== ATS-FRIENDLY RESUME PDF STYLING ===============*/
+#resume-template, .resume-pdf-container, .ats-resume {
     display: none;
     width: 210mm;
     min-height: 297mm;
-    padding: 14mm 16mm;
+    padding: 12mm 15mm;
     background-color: #ffffff !important;
-    color: #1a202c !important;
-    font-family: 'Poppins', 'Space Grotesk', Arial, sans-serif;
+    color: #111111 !important;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.45;
     box-sizing: border-box;
 }
@@ -1415,145 +1415,112 @@ section {
     left: 0 !important;
     margin: 0 !important;
     background-color: #ffffff !important;
-    color: #1a202c !important;
+    color: #111111 !important;
 }
 
-.resume-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 10px;
+.ats-header {
+    text-align: center;
+    border-bottom: 2px solid #111111;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
 }
 
-.resume-profile-photo-wrapper {
-    width: 72px;
-    height: 72px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #2b6cb0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.resume-profile-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 15%;
-}
-
-.resume-title-block {
-    flex: 1;
-}
-
-.resume-name {
+.ats-name {
     font-size: 22px;
     font-weight: 700;
-    color: #1a202c;
+    letter-spacing: 1px;
+    color: #111111;
     margin: 0 0 2px 0;
+    text-transform: uppercase;
 }
 
-.resume-tagline {
-    font-size: 11.5px;
+.ats-title {
+    font-size: 12px;
     font-weight: 600;
     color: #2b6cb0;
     margin: 0 0 2px 0;
 }
 
-.resume-institution {
+.ats-institution {
     font-size: 10px;
-    color: #4a5568;
-    margin: 0;
     font-weight: 500;
-}
-
-.resume-contact-block {
-    text-align: right;
-    font-size: 9.5px;
     color: #4a5568;
-    line-height: 1.35;
+    margin: 0 0 6px 0;
 }
 
-.resume-divider {
-    border: none;
-    border-top: 2px solid #2b6cb0;
-    margin: 8px 0 12px 0;
+.ats-contact {
+    font-size: 9.5px;
+    color: #333333;
+    line-height: 1.45;
+    margin: 0;
 }
 
-.resume-section {
-    margin-bottom: 14px;
+.ats-section {
+    margin-bottom: 12px;
 }
 
-.resume-heading {
-    font-size: 14px;
+.ats-heading {
+    font-size: 12.5px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    color: #1a202c;
-    border-bottom: 1px solid #cbd5e0;
-    padding-bottom: 3px;
-    margin-bottom: 8px;
+    color: #111111;
+    border-bottom: 1.5px solid #2b6cb0;
+    padding-bottom: 2px;
+    margin-bottom: 6px;
 }
 
-.resume-text {
-    font-size: 11px;
-    color: #2d3748;
+.ats-text {
+    font-size: 10px;
+    color: #222222;
     text-align: justify;
     margin: 0;
 }
 
-.resume-item {
-    margin-bottom: 8px;
+.ats-item {
+    margin-bottom: 6px;
 }
 
-.resume-item-header {
+.ats-item-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.resume-item-header h3 {
-    font-size: 12px;
+.ats-degree, .ats-project-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #111111;
+}
+
+.ats-date {
+    font-size: 9.5px;
     font-weight: 600;
     color: #2b6cb0;
-    margin: 0;
 }
 
-.resume-date {
+.ats-sub {
     font-size: 10px;
-    font-weight: 500;
-    color: #718096;
-}
-
-.resume-sub {
-    font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     color: #4a5568;
-    margin: 2px 0;
+    margin: 1px 0;
 }
 
-.resume-detail {
-    font-size: 10.5px;
-    color: #2d3748;
+.ats-detail {
+    font-size: 9.5px;
+    color: #222222;
     margin: 2px 0 0 0;
 }
 
-.resume-skills-list p {
-    font-size: 10.5px;
-    color: #2d3748;
-    margin: 4px 0;
+.ats-skills-list, .ats-list {
+    padding-left: 15px;
+    margin: 0;
 }
 
-.resume-list {
-    padding-left: 16px;
-    margin: 4px 0 0 0;
-}
-
-.resume-list li {
-    font-size: 10.5px;
-    color: #2d3748;
-    margin-bottom: 4px;
+.ats-skills-list li, .ats-list li {
+    font-size: 9.5px;
+    color: #222222;
+    margin-bottom: 3px;
     list-style-type: disc;
 }
 
@@ -1566,7 +1533,7 @@ section {
 
     body {
         background: #ffffff !important;
-        color: #1a202c !important;
+        color: #111111 !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
@@ -1589,16 +1556,6 @@ section {
         padding: 6mm 8mm !important;
         box-shadow: none !important;
         background: #ffffff !important;
-        color: #1a202c !important;
-    }
-
-    .resume-header {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-    }
-
-    .resume-profile-photo-wrapper {
-        display: block !important;
+        color: #111111 !important;
     }
 }
