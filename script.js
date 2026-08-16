@@ -340,12 +340,12 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-/*=============== FORM SUBMISSION (SECURE DIRECT WHATSAPP) ===============*/
+/*=============== FORM SUBMISSION (CONFIDENTIAL DIRECT DELIVERY) ===============*/
 const contactForm = document.querySelector('.contact-form');
 let lastSubmitTime = 0;
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // Anti-spam / rate limiting protection
@@ -355,22 +355,95 @@ if (contactForm) {
         }
         lastSubmitTime = now;
 
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Message';
+        
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i data-feather="loader"></i> Sending...`;
+            if (window.feather) feather.replace();
+        }
+
         const formData = new FormData(contactForm);
         const name = (formData.get('name') || '').toString().trim();
         const email = (formData.get('email') || '').toString().trim();
         const message = (formData.get('message') || '').toString().trim();
 
         if (!name || !email || !message) {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                if (window.feather) feather.replace();
+            }
             return;
         }
 
-        const whatsappPhone = '917620804232';
+        // Base64 obfuscated WhatsApp number (917620804232)
+        const _wa = atob('OTE3NjIwODA0MjMy');
         const formattedMessage = `Hello Omprasad,\n\n*New Portfolio Message*\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n💬 *Message:* ${message}`;
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${encodeURIComponent(formattedMessage)}`;
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${_wa}&text=${encodeURIComponent(formattedMessage)}`;
 
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        contactForm.reset();
+        try {
+            // Asynchronously post message to instant email delivery
+            fetch('https://formsubmit.co/ajax/omprasadpadwalkar007@gmail.com', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message,
+                    _subject: `New Direct Portfolio Message from ${name}`
+                })
+            }).catch(e => console.warn('FormSubmit async notify:', e));
+
+            // Open WhatsApp link with Base64 decoded recipient
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+            showFormNotification('✅ Message sent! Omprasad will receive your message directly.', 'success');
+            contactForm.reset();
+        } catch (err) {
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            contactForm.reset();
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                if (window.feather) feather.replace();
+            }
+        }
     });
+}
+
+function showFormNotification(msg) {
+    let notif = document.getElementById('form-notification');
+    if (!notif) {
+        notif = document.createElement('div');
+        notif.id = 'form-notification';
+        notif.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(13, 12, 34, 0.95);
+            border: 1px solid var(--primary-color);
+            color: #ffffff;
+            padding: 0.8rem 1.4rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            z-index: 999999;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.4s ease;
+        `;
+        document.body.appendChild(notif);
+    }
+    notif.textContent = msg;
+    notif.style.opacity = '1';
+    setTimeout(() => {
+        notif.style.opacity = '0';
+    }, 4500);
 }
 
 
