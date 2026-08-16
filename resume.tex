@@ -1,0 +1,129 @@
+\documentclass[a4paper,10pt]{article}
+
+%-------------------------------------------------------------------------------
+% PACKAGES & SETUP
+%-------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+% Colors
+\definecolor{primary}{RGB}{43, 108, 176} % Dark Slate Blue
+\definecolor{darktext}{RGB}{30, 30, 30}
+\definecolor{subtext}{RGB}{70, 70, 70}
+
+% Hyperlink Setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=primary,
+    urlcolor=primary
+}
+
+% Page style
+\pagestyle{empty}
+\urlstyle{same}
+
+% Section Heading Formatting (ATS-Friendly)
+\titleformat{\section}{
+  \vspace{-4pt}\color{primary}\scshape\large\bfseries
+}{}{0em}{}[\color{primary}\titlerule \vspace{-4pt}]
+
+% Custom Itemize
+\setlist[itemize]{leftmargin=1.2em, label=\small$\bullet$, itemsep=1.5pt, parsep=0pt, topsep=2pt}
+
+%-------------------------------------------------------------------------------
+% RESUME CONTENT
+%-------------------------------------------------------------------------------
+\begin{document}
+
+%-------------------------------------------------------------------------------
+% HEADER
+%-------------------------------------------------------------------------------
+\begin{center}
+    {\Huge \bfseries \color{darktext} OMPRASAD BHASKAR PADWALKAR} \\[3pt]
+    {\large \bfseries \color{primary} 2nd-Year Data Science Student \& AI Developer} \\[2pt]
+    {\small \color{subtext} D Y Patil College of Engineering, Kolhapur, Maharashtra} \\[4pt]
+    {\small
+        \faEnvelope\ \href{mailto:omprasadpadwalkar007@gmail.com}{omprasadpadwalkar007@gmail.com} \ $|$ \
+        \faPhone\ +91 9405856488 \ $|$ \
+        \faMapMarkerAlt\ Kolhapur, MH, India \\
+        \faLinkedin\ \href{https://www.linkedin.com/in/omprasad-bhaskar-padwalkar-824224394}{linkedin.com/in/omprasad-bhaskar-padwalkar-824224394} \ $|$ \
+        \faGithub\ \href{https://github.com/omprasad-007}{github.com/omprasad-007}
+    }
+\end{center}
+
+\vspace{-6pt}
+
+%-------------------------------------------------------------------------------
+% SUMMARY
+%-------------------------------------------------------------------------------
+\section{Professional Summary}
+Results-driven 2nd-Year Engineering Student specializing in Data Science, Machine Learning, and Artificial Intelligence at D Y Patil College of Engineering, Kolhapur. Hands-on experience in engineering Computer Vision models, AI payment fraud detection systems, agricultural data analytics solutions, and responsive full-stack web applications. Proficient in Python, C/C++, Data Structures, ML algorithms, and Web Technologies.
+
+%-------------------------------------------------------------------------------
+% EDUCATION
+%-------------------------------------------------------------------------------
+\section{Education}
+\textbf{Bachelor of Engineering (B.E.) in Data Science} \hfill \textbf{2024 -- Present (2nd Year)} \\
+\textit{D Y Patil College of Engineering, Kolhapur, Maharashtra} \\
+\small{\textbf{Relevant Coursework:} Data Science Foundations, Artificial Intelligence, Machine Learning, Python Programming, C \& C++ Data Structures, Database Systems, Computer Vision, Web Technologies.}
+
+%-------------------------------------------------------------------------------
+% TECHNICAL SKILLS
+%-------------------------------------------------------------------------------
+\section{Technical Skills}
+\begin{itemize}
+    \item \textbf{Programming Languages:} Python, C, C++, JavaScript, SQL, HTML5, CSS3
+    \item \textbf{Data Science \& AI:} NumPy, Pandas, Scikit-Learn, OpenCV, Data Preprocessing, Machine Learning Pipelines, Anomaly Detection
+    \item \textbf{Tools \& Frameworks:} Git, GitHub, VS Code, REST APIs, Swiper.js, Feather Icons, Responsive Web Architecture
+    \item \textbf{Soft Skills \& Leadership:} Strategic Problem Solving, Team Leadership, Emotional Intelligence, Communication
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+% PROJECTS
+%-------------------------------------------------------------------------------
+\section{Key Featured Projects}
+
+\textbf{SecurePay AI --- Intelligent Payment Security System} \hfill \textit{AI / FinTech} \\
+\begin{itemize}
+    \item Engineered an AI-powered payment security framework implementing real-time anomaly detection algorithms to prevent financial transaction fraud.
+\end{itemize}
+
+\textbf{AgroScan AI --- Agricultural Crop Disease Detection} \hfill \textit{Computer Vision / AgriTech} \\
+\begin{itemize}
+    \item Developed a Computer Vision diagnostic pipeline analyzing crop leaf images for early disease detection, optimizing treatment and crop yield.
+\end{itemize}
+
+\textbf{KrishiSetu --- Bridge for Farmers} \hfill \textit{Data Analytics / Web App} \\
+\begin{itemize}
+    \item Architected a smart agricultural analytics web platform providing farmers with real-time market insights, price analytics, and resource access.
+\end{itemize}
+
+\textbf{80th Independence Day Wishes Platform} \hfill \textit{Interactive Web App} \\
+\begin{itemize}
+    \item Created an interactive web application featuring customized greetings, dynamic audio playback, and animated wish generation.
+\end{itemize}
+
+\textbf{Personal Developer \& Data Science Portfolio} \hfill \textit{Full-Stack Web App} \\
+\begin{itemize}
+    \item Built a responsive developer portfolio application featuring automated GitHub project sync, security hardening, and dynamic PDF resume export.
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+% CERTIFICATIONS & ACHIEVEMENTS
+%-------------------------------------------------------------------------------
+\section{Certifications \& Achievements}
+\begin{itemize}
+    \item \textbf{Hack2Skills Innovation \& Hackathon Certificate:} Recognized for rapid prototyping and innovative technological solution design.
+    \item \textbf{Python for Data Science Certification:} Specialized credential in numerical computing, data manipulation, and machine learning models.
+    \item \textbf{Soft Skills \& Communication Training (Level 1):} Certified in effective communication, presentation, and workplace etiquette.
+    \item \textbf{Advanced Soft Skills \& Leadership Mastery (Level 2):} Advanced certification in corporate readiness, team leadership, and emotional intelligence.
+    \item \textbf{Technical Skill Development \& Engineering Excellence:} Assessment credential in technical engineering competencies and project execution.
+\end{itemize}
+
+\end{document}
