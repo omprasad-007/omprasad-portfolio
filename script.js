@@ -107,6 +107,18 @@ let swiper = new Swiper('.projects-slider', {
 });
 
 // Dynamic GitHub Repos Analyzer & Auto-Sync
+/*=============== SECURITY SANITIZATION HELPER ===============*/
+function escapeHTML(str) {
+    if (typeof str !== 'string') return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+// Dynamic GitHub Repos Analyzer & Auto-Sync
 async function loadGitHubProjects() {
     const GITHUB_USERNAME = 'omprasad-007';
     const wrapper = document.querySelector('.projects-slider .swiper-wrapper');
@@ -161,8 +173,10 @@ async function loadGitHubProjects() {
                 title = 'Portfolio Website';
             }
 
+            title = escapeHTML(title);
+
             // Description
-            const description = repo.description || 'GitHub project repository focusing on intelligent engineering and software solutions.';
+            const description = escapeHTML(repo.description || 'GitHub project repository focusing on intelligent engineering and software solutions.');
 
             // Live Demo URL determination
             let liveDemo = repo.homepage ? repo.homepage.trim() : null;
@@ -199,23 +213,26 @@ async function loadGitHubProjects() {
             }
 
             // Tech stack badges HTML
-            const techStackHtml = techList.slice(0, 4).map(t => `<span>${t}</span>`).join('');
+            const techStackHtml = techList.slice(0, 4).map(t => `<span>${escapeHTML(t)}</span>`).join('');
 
             // Action links HTML
             let actionLinksHtml = '';
+            const safeHtmlUrl = escapeHTML(repo.html_url);
+            const safeLiveDemo = escapeHTML(liveDemo);
+
             if (status === 'completed' && liveDemo) {
                 actionLinksHtml = `
-                    <a href="${liveDemo}" class="btn-link" target="_blank">Live Demo <i data-feather="external-link"></i></a>
-                    <a href="${repo.html_url}" class="btn-link" target="_blank" style="margin-left: 0.5rem; opacity: 0.8;">GitHub <i data-feather="github"></i></a>
+                    <a href="${safeLiveDemo}" class="btn-link" target="_blank" rel="noopener noreferrer">Live Demo <i data-feather="external-link"></i></a>
+                    <a href="${safeHtmlUrl}" class="btn-link" target="_blank" rel="noopener noreferrer" style="margin-left: 0.5rem; opacity: 0.8;">GitHub <i data-feather="github"></i></a>
                 `;
             } else if (status === 'completed') {
                 actionLinksHtml = `
-                    <a href="${repo.html_url}" class="btn-link" target="_blank">View Code <i data-feather="github"></i></a>
+                    <a href="${safeHtmlUrl}" class="btn-link" target="_blank" rel="noopener noreferrer">View Code <i data-feather="github"></i></a>
                 `;
             } else {
                 actionLinksHtml = `
                     <span class="btn-ongoing"><i data-feather="clock"></i> Ongoing Project</span>
-                    <a href="${repo.html_url}" class="btn-link" target="_blank" style="margin-left: 0.5rem; opacity: 0.8;">GitHub <i data-feather="github"></i></a>
+                    <a href="${safeHtmlUrl}" class="btn-link" target="_blank" rel="noopener noreferrer" style="margin-left: 0.5rem; opacity: 0.8;">GitHub <i data-feather="github"></i></a>
                 `;
             }
 
@@ -323,12 +340,20 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-/*=============== FORM SUBMISSION ===============*/
+/*=============== FORM SUBMISSION (SECURE DIRECT WHATSAPP) ===============*/
 const contactForm = document.querySelector('.contact-form');
+let lastSubmitTime = 0;
 
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        // Anti-spam / rate limiting protection
+        const now = Date.now();
+        if (now - lastSubmitTime < 3000) {
+            return;
+        }
+        lastSubmitTime = now;
 
         const formData = new FormData(contactForm);
         const name = (formData.get('name') || '').toString().trim();
@@ -339,13 +364,74 @@ if (contactForm) {
             return;
         }
 
-        const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-        const body = encodeURIComponent(
-            `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-        );
+        const whatsappPhone = '917620804232';
+        const formattedMessage = `Hello Omprasad,\n\n*New Portfolio Message*\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n💬 *Message:* ${message}`;
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${encodeURIComponent(formattedMessage)}`;
 
-        window.location.href = `mailto:omprasadpadwalkar007@gmail.com?subject=${subject}&body=${body}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         contactForm.reset();
+    });
+}
+
+
+/*=============== PROFESSIONAL RESUME DOWNLOAD HANDLER ===============*/
+const downloadResumeBtn = document.getElementById('download-resume-btn');
+
+if (downloadResumeBtn) {
+    let isGenerating = false;
+    downloadResumeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (isGenerating) return;
+
+        isGenerating = true;
+        const originalText = downloadResumeBtn.innerHTML;
+        downloadResumeBtn.innerHTML = `<i data-feather="file-text"></i> Generating PDF...`;
+        if (window.feather) feather.replace();
+
+        const resumeElement = document.getElementById('resume-template');
+        if (!resumeElement) {
+            isGenerating = false;
+            downloadResumeBtn.innerHTML = originalText;
+            if (window.feather) feather.replace();
+            return;
+        }
+
+        const opt = {
+            margin: [8, 8, 8, 8],
+            filename: 'Omprasad_Bhaskar_Padwalkar_Resume.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true, logging: false },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        if (typeof html2pdf === 'undefined') {
+            window.print();
+            isGenerating = false;
+            downloadResumeBtn.innerHTML = originalText;
+            if (window.feather) feather.replace();
+            return;
+        }
+
+        resumeElement.classList.add('pdf-export-mode');
+
+        html2pdf()
+            .set(opt)
+            .from(resumeElement)
+            .save()
+            .then(() => {
+                resumeElement.classList.remove('pdf-export-mode');
+                isGenerating = false;
+                downloadResumeBtn.innerHTML = originalText;
+                if (window.feather) feather.replace();
+            })
+            .catch((err) => {
+                console.error('PDF generation error, falling back to print:', err);
+                resumeElement.classList.remove('pdf-export-mode');
+                window.print();
+                isGenerating = false;
+                downloadResumeBtn.innerHTML = originalText;
+                if (window.feather) feather.replace();
+            });
     });
 }
 

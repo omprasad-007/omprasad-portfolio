@@ -14,6 +14,12 @@
     <!-- Google Search Console Site Verification -->
     <meta name="google-site-verification" content="googlee04e4f85751735a6" />
 
+    <!-- Security Meta Tags & Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://api.whatsapp.com https://wa.me; object-src 'none'; frame-src 'self' https://drive.google.com; base-uri 'self';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+
     <!-- Open Graph / Facebook / LinkedIn Social Cards -->
     <meta property="og:type" content="profile" />
     <meta property="og:title" content="Omprasad Bhaskar Padwalkar (Omprasad Padwalkar) | Portfolio" />
@@ -105,9 +111,10 @@
           <a
             href="https://www.linkedin.com/in/omprasad-bhaskar-padwalkar-824224394?utm_source=share_via&utm_content=profile&utm_medium=member_android"
             target="_blank"
+            rel="noopener noreferrer"
             ><i data-feather="linkedin"></i
           ></a>
-          <a href="https://www.instagram.com/omprasad0075?igsh=NHk0YWNwYm0xb3lo" target="_blank"
+          <a href="https://www.instagram.com/omprasad0075?igsh=NHk0YWNwYm0xb3lo" target="_blank" rel="noopener noreferrer"
             ><i data-feather="instagram"></i
           ></a>
           <a href="mailto:omprasadpadwalkar007@gmail.com"
@@ -134,9 +141,10 @@
       <a
         href="https://www.linkedin.com/in/omprasad-bhaskar-padwalkar-824224394?utm_source=share_via&utm_content=profile&utm_medium=member_android"
         target="_blank"
+        rel="noopener noreferrer"
         ><i data-feather="linkedin"></i
       ></a>
-      <a href="https://www.instagram.com/omprasad0075?igsh=NHk0YWNwYm0xb3lo" target="_blank"
+      <a href="https://www.instagram.com/omprasad0075?igsh=NHk0YWNwYm0xb3lo" target="_blank" rel="noopener noreferrer"
         ><i data-feather="instagram"></i
       ></a>
       <a href="mailto:omprasadpadwalkar007@gmail.com"
@@ -172,6 +180,9 @@
           <div class="hero-subtext">Passionate about <span class="typing-text"></span></div>
           <div class="btn-group">
             <a href="#projects" class="btn">View Projects</a>
+            <button type="button" class="btn btn-outline btn-resume" id="download-resume-btn">
+              <i data-feather="file-text"></i> Download Resume
+            </button>
             <a href="#certifications" class="btn btn-outline">View Certifications</a>
           </div>
         </div>
@@ -182,12 +193,12 @@
       <!-- ABOUT SECTION -->
       <section class="about section" id="about">
         <h2 class="section-title"><span class="title-tag">&lt;</span>About Me<span class="title-tag"> /&gt;</span></h2>
-        <span class="section-subtitle">Data Science Domain & Engineering Journey</span>
+        <span class="section-subtitle">Data Science Student & Engineering Journey</span>
         <div class="about-container">
           <div class="about-content">
-            <h3>🚀 2nd-Year Engineering Student Driven by Data Science & AI</h3>
+            <h3>🚀 2nd-Year Data Science Student @ D Y Patil College of Engineering</h3>
             <p>
-              I am currently in my <strong>2nd year of Engineering at D Y Patil College of Engineering</strong>, focusing deeply on the <strong>Data Science & AI domain</strong>. My core expertise lies in transforming raw data into actionable insights, designing Machine Learning pipelines, and engineering high-performance web applications.
+              I am currently a <strong>2nd-year Data Science Student at D Y Patil College of Engineering</strong>. My core expertise lies in transforming raw data into actionable insights, building Machine Learning & AI pipelines, and engineering high-performance web applications.
             </p>
             <p class="about-highlight-intro">
               My engineering approach is directly shaped by hands-on project creation in Data Science and AI:
@@ -588,6 +599,7 @@
                 <a
                   href="https://www.linkedin.com/in/omprasad-bhaskar-padwalkar-824224394?utm_source=share_via&utm_content=profile&utm_medium=member_android"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >Omprasad Bhaskar Padwalkar</a
                 >
               </div>
@@ -596,7 +608,7 @@
               <i data-feather="instagram" class="contact-icon"></i>
               <div>
                 <h4 class="contact-item-title">Instagram</h4>
-                <a href="https://www.instagram.com/omprasad0075?igsh=NHk0YWNwYm0xb3lo" target="_blank"
+                <a href="https://www.instagram.com/omprasad0075?igsh=NHk0YWNwYm0xb3lo" target="_blank" rel="noopener noreferrer"
                   >@omprasad0075</a
                 >
               </div>
@@ -610,13 +622,16 @@
             </div>
           </div>
 
-          <form class="contact-form">
+          <form class="contact-form" autocomplete="off">
             <div class="contact-form-div">
               <input
                 type="text"
                 name="name"
                 class="contact-form-input"
                 placeholder="Your Name"
+                maxlength="100"
+                pattern="^[a-zA-Z\s\.\-']+$"
+                title="Please enter a valid name"
                 required
               />
             </div>
@@ -626,6 +641,7 @@
                 name="email"
                 class="contact-form-input"
                 placeholder="Your Email"
+                maxlength="120"
                 required
               />
             </div>
@@ -634,6 +650,7 @@
                 name="message"
                 class="contact-form-input"
                 placeholder="Your Message"
+                maxlength="1000"
                 required
               ></textarea>
             </div>
@@ -654,8 +671,97 @@
           <iframe id="modal-cert-iframe" src="" frameborder="0" allow="autoplay"></iframe>
         </div>
         <div class="cert-modal-footer">
-          <a id="modal-cert-drivelink" href="#" target="_blank" class="btn">Open in Google Drive <i data-feather="external-link"></i></a>
+          <a id="modal-cert-drivelink" href="#" target="_blank" rel="noopener noreferrer" class="btn">Open in Google Drive <i data-feather="external-link"></i></a>
         </div>
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL RESUME TEMPLATE (FOR PDF GENERATION & PRINTING) -->
+    <div id="resume-template" class="resume-pdf-container">
+      <div class="resume-header">
+        <div class="resume-title-block">
+          <h1 class="resume-name">Omprasad Bhaskar Padwalkar</h1>
+          <p class="resume-tagline">2nd-Year Data Science Student & AI Developer</p>
+        </div>
+        <div class="resume-contact-block">
+          <p>📧 omprasadpadwalkar007@gmail.com</p>
+          <p>📞 +91 9405856488</p>
+          <p>📍 Kolhapur, Maharashtra, India</p>
+          <p>🔗 linkedin.com/in/omprasad-bhaskar-padwalkar-824224394</p>
+          <p>💻 github.com/omprasad-007</p>
+        </div>
+      </div>
+
+      <hr class="resume-divider" />
+
+      <div class="resume-section">
+        <h2 class="resume-heading">Professional Summary</h2>
+        <p class="resume-text">
+          Passionate and results-driven 2nd-Year Engineering Student specializing in Data Science, Machine Learning, and Artificial Intelligence at D Y Patil College of Engineering. Experienced in building computer vision models, intelligent data analytics frameworks, and high-performance web applications. Dedicated to leveraging algorithms and software engineering to solve real-world problems.
+        </p>
+      </div>
+
+      <div class="resume-section">
+        <h2 class="resume-heading">Education</h2>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>Bachelor of Engineering (B.E.) in Data Science</h3>
+            <span class="resume-date">2024 – Present (2nd Year)</span>
+          </div>
+          <p class="resume-sub">D Y Patil College of Engineering, Kolhapur, Maharashtra</p>
+          <p class="resume-detail">Relevant Coursework: Data Science Foundations, Python Programming, C & C++ Data Structures, Machine Learning Concepts, Web Development.</p>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h2 class="resume-heading">Technical Competencies</h2>
+        <div class="resume-skills-list">
+          <p><strong>Programming Languages:</strong> Python, C, C++, JavaScript, HTML5, CSS3, SQL</p>
+          <p><strong>Data Science & AI:</strong> NumPy, Pandas, Scikit-Learn, OpenCV, Data Analytics, Machine Learning Pipelines</p>
+          <p><strong>Tools & Web Engineering:</strong> Git, GitHub, VS Code, REST APIs, Swiper.js, Responsive Web Architecture</p>
+          <p><strong>Soft Skills:</strong> Team Leadership, Technical Problem Solving, Communication, Corporate Readiness</p>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h2 class="resume-heading">Featured Projects</h2>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>SecurePay AI — Intelligent Payment Security System</h3>
+            <span class="resume-date">AI / FinTech</span>
+          </div>
+          <p class="resume-detail">Developed an AI-powered payment framework implementing intelligent anomaly detection algorithms for real-time transaction fraud prevention.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>AgroScan AI — Agricultural Crop Disease Detection</h3>
+            <span class="resume-date">Computer Vision / AgriTech</span>
+          </div>
+          <p class="resume-detail">Engineered a Computer Vision pipeline to detect crop leaf diseases early, helping farmers optimize treatment decisions and protect crop yield.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>KrishiSetu — Bridge for Farmers</h3>
+            <span class="resume-date">Data Analytics / Web App</span>
+          </div>
+          <p class="resume-detail">Built a smart agricultural analytics platform providing farmers with real-time market data insights and streamlined access to agricultural resources.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>80th Independence Day Wishes Platform</h3>
+            <span class="resume-date">Interactive Web App</span>
+          </div>
+          <p class="resume-detail">Created an interactive web application featuring customized greetings, dynamic audio playback, and animated wish generation.</p>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h2 class="resume-heading">Certifications & Leadership</h2>
+        <ul class="resume-list">
+          <li><strong>Hack2Skills Innovation & Hackathon Certificate:</strong> Prototype creation, collaborative problem solving, and innovative solution design.</li>
+          <li><strong>Soft Skills & Leadership Training (Levels 1 & 2):</strong> Interpersonal communication, emotional intelligence, presentation skills, and corporate readiness.</li>
+          <li><strong>Technical Skill Development & Engineering Excellence:</strong> Certified evaluation in technical engineering competencies and project execution.</li>
+        </ul>
       </div>
     </div>
 
@@ -664,6 +770,8 @@
       <p>&copy; 2026 Omprasad Bhaskar Padwalkar. Designed with a futuristic vision.</p>
     </footer>
 
+    <!-- HTML2PDF CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- SCROLLREVEAL -->
     <script src="https://unpkg.com/scrollreveal"></script>
     <!-- TYPED.JS -->
