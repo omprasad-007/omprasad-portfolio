@@ -1559,24 +1559,46 @@ section {
 
 /*=============== MEDIA PRINT STYLING ===============*/
 @media print {
+    @page {
+        size: A4;
+        margin: 6mm;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #1a202c !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
     body * {
-        visibility: hidden;
+        visibility: hidden !important;
     }
 
     #resume-template, #resume-template * {
-        visibility: visible;
+        visibility: visible !important;
     }
 
     #resume-template {
         display: block !important;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        margin: 0;
-        padding: 15mm;
-        box-shadow: none;
-        background: #fff !important;
-        color: #000 !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 6mm 8mm !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        color: #1a202c !important;
+    }
+
+    .resume-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    .resume-profile-photo-wrapper {
+        display: block !important;
     }
 }
