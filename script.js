@@ -396,12 +396,16 @@ if (downloadResumeBtn) {
             return;
         }
 
+        // Scroll to top of window to prevent page scroll offsets during PDF capture
+        window.scrollTo(0, 0);
+
         const opt = {
-            margin: [8, 8, 8, 8],
+            margin: [5, 5, 5, 5],
             filename: 'Omprasad_Bhaskar_Padwalkar_Resume.pdf',
             image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true, logging: false },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0, windowWidth: 800 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
         if (typeof html2pdf === 'undefined') {
