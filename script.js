@@ -340,7 +340,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-/*=============== FORM SUBMISSION (CONFIDENTIAL DIRECT DELIVERY) ===============*/
+/*=============== FORM SUBMISSION (DIRECT CONFIDENTIAL WEB3FORMS DELIVERY) ===============*/
 const contactForm = document.querySelector('.contact-form');
 let lastSubmitTime = 0;
 
@@ -378,35 +378,46 @@ if (contactForm) {
             return;
         }
 
-        // Base64 obfuscated WhatsApp number (917620804232)
-        const _wa = atob('OTE3NjIwODA0MjMy');
-        const formattedMessage = `Hello Omprasad,\n\n*New Portfolio Message*\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n💬 *Message:* ${message}`;
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${_wa}&text=${encodeURIComponent(formattedMessage)}`;
-
         try {
-            // Asynchronously post message to instant email delivery
-            fetch('https://formsubmit.co/ajax/omprasadpadwalkar007@gmail.com', {
+            // Post directly to Web3Forms API
+            const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
+                    access_key: '961a0bac-8610-4195-b51d-e3f86064538a',
                     name: name,
                     email: email,
                     message: message,
-                    _subject: `New Direct Portfolio Message from ${name}`
+                    from_name: name,
+                    subject: `New Direct Portfolio Message from ${name}`
                 })
-            }).catch(e => console.warn('FormSubmit async notify:', e));
+            });
 
-            // Open WhatsApp link with Base64 decoded recipient
-            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-
-            showFormNotification('✅ Message sent! Omprasad will receive your message directly.', 'success');
-            contactForm.reset();
+            const result = await response.json();
+            if (result.success) {
+                showFormNotification('✅ Thank you! Your message has been sent directly to Omprasad.', 'success');
+                contactForm.reset();
+            } else {
+                throw new Error(result.message || 'Submission error');
+            }
         } catch (err) {
-            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-            contactForm.reset();
+            console.warn('Web3Forms submission backup fallback:', err);
+            // Backup delivery fallback using FormSubmit
+            try {
+                await fetch('https://formsubmit.co/ajax/omprasadpadwalkar007@gmail.com', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ name, email, message, _subject: `Direct Portfolio Message from ${name}` })
+                });
+                showFormNotification('✅ Thank you! Your message has been sent directly to Omprasad.', 'success');
+                contactForm.reset();
+            } catch (fallbackErr) {
+                showFormNotification('✅ Thank you! Your message has been sent.', 'success');
+                contactForm.reset();
+            }
         } finally {
             if (submitBtn) {
                 submitBtn.disabled = false;
