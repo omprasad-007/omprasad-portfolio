@@ -1391,15 +1391,15 @@ section {
     height: 18px;
 }
 
-/*=============== ATS-FRIENDLY RESUME PDF STYLING ===============*/
-#resume-template, .resume-pdf-container, .ats-resume {
+/*=============== LATEX ATS RESUME STYLING ===============*/
+#resume-template, .resume-pdf-container, .latex-resume {
     display: none;
     width: 210mm;
     min-height: 297mm;
-    padding: 12mm 15mm;
+    padding: 10mm 14mm;
     background-color: #ffffff !important;
-    color: #111111 !important;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #1e1e1e !important;
+    font-family: 'Latin Modern Roman', 'Computer Modern', 'Times New Roman', Times, Georgia, serif;
     line-height: 1.45;
     box-sizing: border-box;
 }
@@ -1415,112 +1415,119 @@ section {
     left: 0 !important;
     margin: 0 !important;
     background-color: #ffffff !important;
-    color: #111111 !important;
+    color: #1e1e1e !important;
 }
 
-.ats-header {
+.latex-header {
     text-align: center;
-    border-bottom: 2px solid #111111;
-    padding-bottom: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
-.ats-name {
-    font-size: 22px;
+.latex-name {
+    font-size: 24px;
     font-weight: 700;
-    letter-spacing: 1px;
-    color: #111111;
+    letter-spacing: 0.5px;
+    color: #1e1e1e;
     margin: 0 0 2px 0;
     text-transform: uppercase;
 }
 
-.ats-title {
-    font-size: 12px;
-    font-weight: 600;
+.latex-title {
+    font-size: 13px;
+    font-weight: 700;
     color: #2b6cb0;
     margin: 0 0 2px 0;
 }
 
-.ats-institution {
-    font-size: 10px;
-    font-weight: 500;
-    color: #4a5568;
+.latex-college {
+    font-size: 10.5px;
+    color: #464646;
     margin: 0 0 6px 0;
 }
 
-.ats-contact {
+.latex-contact {
     font-size: 9.5px;
-    color: #333333;
-    line-height: 1.45;
+    color: #2b6cb0;
+    line-height: 1.4;
     margin: 0;
 }
 
-.ats-section {
-    margin-bottom: 12px;
+.latex-contact i {
+    width: 12px;
+    height: 12px;
+    vertical-align: middle;
 }
 
-.ats-heading {
-    font-size: 12.5px;
+.latex-section {
+    margin-bottom: 10px;
+}
+
+.latex-heading {
+    font-size: 13.5px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: #111111;
-    border-bottom: 1.5px solid #2b6cb0;
+    color: #2b6cb0;
+    border-bottom: 1px solid #2b6cb0;
     padding-bottom: 2px;
-    margin-bottom: 6px;
+    margin: 8px 0 5px 0;
 }
 
-.ats-text {
-    font-size: 10px;
-    color: #222222;
+.latex-text {
+    font-size: 10.5px;
+    color: #1e1e1e;
     text-align: justify;
     margin: 0;
 }
 
-.ats-item {
-    margin-bottom: 6px;
+.latex-item, .latex-project-block {
+    margin-bottom: 5px;
 }
 
-.ats-item-header {
+.latex-item-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
 }
 
-.ats-degree, .ats-project-title {
+.latex-bold-title {
     font-size: 11px;
     font-weight: 700;
-    color: #111111;
+    color: #1e1e1e;
 }
 
-.ats-date {
-    font-size: 9.5px;
-    font-weight: 600;
-    color: #2b6cb0;
-}
-
-.ats-sub {
+.latex-date-right {
     font-size: 10px;
-    font-weight: 600;
-    color: #4a5568;
+    font-weight: 700;
+    color: #1e1e1e;
+}
+
+.latex-tag-right {
+    font-size: 10px;
+    font-style: italic;
+    color: #464646;
+}
+
+.latex-sub {
+    font-size: 10.5px;
+    font-style: italic;
+    color: #464646;
     margin: 1px 0;
 }
 
-.ats-detail {
-    font-size: 9.5px;
-    color: #222222;
+.latex-detail {
+    font-size: 10px;
+    color: #1e1e1e;
     margin: 2px 0 0 0;
 }
 
-.ats-skills-list, .ats-list {
-    padding-left: 15px;
-    margin: 0;
+.latex-list {
+    padding-left: 16px;
+    margin: 2px 0 0 0;
 }
 
-.ats-skills-list li, .ats-list li {
-    font-size: 9.5px;
-    color: #222222;
-    margin-bottom: 3px;
+.latex-list li {
+    font-size: 10px;
+    color: #1e1e1e;
+    margin-bottom: 2px;
     list-style-type: disc;
 }
 
@@ -1528,12 +1535,12 @@ section {
 @media print {
     @page {
         size: A4;
-        margin: 6mm;
+        margin: 5mm;
     }
 
     body {
         background: #ffffff !important;
-        color: #111111 !important;
+        color: #1e1e1e !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
@@ -1553,9 +1560,9 @@ section {
         top: 0 !important;
         width: 100% !important;
         margin: 0 !important;
-        padding: 6mm 8mm !important;
+        padding: 5mm 8mm !important;
         box-shadow: none !important;
         background: #ffffff !important;
-        color: #111111 !important;
+        color: #1e1e1e !important;
     }
 }
