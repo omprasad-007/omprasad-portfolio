@@ -458,54 +458,12 @@ function showFormNotification(msg) {
 }
 
 
-/*=============== INSTANT PROFESSIONAL RESUME DOWNLOAD HANDLER ===============*/
+/*=============== DIRECT PROFESSIONAL RESUME FILE DOWNLOAD HANDLER ===============*/
 const downloadResumeBtn = document.getElementById('download-resume-btn');
 
 if (downloadResumeBtn) {
-    downloadResumeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const resumeElement = document.getElementById('resume-template');
-        if (!resumeElement) return;
-
-        // Try fast html2pdf export, with instant fallback to native print-to-pdf
-        if (typeof html2pdf !== 'undefined') {
-            const container = document.createElement('div');
-            container.id = 'pdf-render-container';
-            container.style.position = 'fixed';
-            container.style.top = '0';
-            container.style.left = '0';
-            container.style.width = '210mm';
-            container.style.zIndex = '9999999';
-            container.style.background = '#ffffff';
-            container.style.color = '#1a202c';
-
-            const clone = resumeElement.cloneNode(true);
-            clone.style.display = 'block';
-            container.appendChild(clone);
-            document.body.appendChild(container);
-
-            const opt = {
-                margin: [4, 4, 4, 4],
-                filename: 'Omprasad_Bhaskar_Padwalkar_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.95 },
-                html2canvas: { scale: 1.5, useCORS: true, logging: false, scrollY: 0 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-
-            html2pdf().set(opt).from(container).save().then(() => {
-                if (container && container.parentNode) {
-                    container.parentNode.removeChild(container);
-                }
-            }).catch(() => {
-                if (container && container.parentNode) {
-                    container.parentNode.removeChild(container);
-                }
-                window.print();
-            });
-        } else {
-            window.print();
-        }
+    downloadResumeBtn.addEventListener('click', () => {
+        showFormNotification('📥 Resume download initiated!', 'success');
     });
 }
 
