@@ -1392,7 +1392,7 @@ section {
 }
 
 /*=============== PROFESSIONAL RESUME PDF STYLING ===============*/
-#resume-template {
+#resume-template, .resume-pdf-container {
     display: none;
     width: 210mm;
     min-height: 297mm;
@@ -1404,15 +1404,18 @@ section {
     box-sizing: border-box;
 }
 
-/* When rendered for PDF generation, pin to top 0 of viewport */
+/* When rendered for PDF generation, make container visible */
 .html2pdf__container #resume-template,
-#resume-template.pdf-export-mode {
+.html2pdf__container .resume-pdf-container,
+#resume-template.pdf-export-mode,
+#pdf-render-container .resume-pdf-container {
     display: block !important;
-    position: absolute !important;
+    position: relative !important;
     top: 0 !important;
     left: 0 !important;
     margin: 0 !important;
-    z-index: 99999 !important;
+    background-color: #ffffff !important;
+    color: #1a202c !important;
 }
 
 .resume-header {

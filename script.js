@@ -379,7 +379,7 @@ const downloadResumeBtn = document.getElementById('download-resume-btn');
 
 if (downloadResumeBtn) {
     let isGenerating = false;
-    downloadResumeBtn.addEventListener('click', (e) => {
+    downloadResumeBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         if (isGenerating) return;
 
@@ -396,18 +396,7 @@ if (downloadResumeBtn) {
             return;
         }
 
-        // Scroll to top of window to prevent page scroll offsets during PDF capture
-        window.scrollTo(0, 0);
-
-        const opt = {
-            margin: [5, 5, 5, 5],
-            filename: 'Omprasad_Bhaskar_Padwalkar_Resume.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0, windowWidth: 800 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-        };
-
+        // Fallback to print if html2pdf library is unavailable
         if (typeof html2pdf === 'undefined') {
             window.print();
             isGenerating = false;
@@ -416,26 +405,61 @@ if (downloadResumeBtn) {
             return;
         }
 
-        resumeElement.classList.add('pdf-export-mode');
+        let container = null;
+        try {
+            // Scroll to top of window to prevent page scroll offsets during PDF capture
+            window.scrollTo(0, 0);
 
-        html2pdf()
-            .set(opt)
-            .from(resumeElement)
-            .save()
-            .then(() => {
-                resumeElement.classList.remove('pdf-export-mode');
-                isGenerating = false;
-                downloadResumeBtn.innerHTML = originalText;
-                if (window.feather) feather.replace();
-            })
-            .catch((err) => {
-                console.error('PDF generation error, falling back to print:', err);
-                resumeElement.classList.remove('pdf-export-mode');
-                window.print();
-                isGenerating = false;
-                downloadResumeBtn.innerHTML = originalText;
-                if (window.feather) feather.replace();
-            });
+            // Create temporary rendering container
+            container = document.createElement('div');
+            container.id = 'pdf-render-container';
+            container.style.position = 'fixed';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '210mm';
+            container.style.zIndex = '9999999';
+            container.style.background = '#ffffff';
+            container.style.color = '#1a202c';
+            container.style.overflow = 'visible';
+
+            const clone = resumeElement.cloneNode(true);
+            clone.style.display = 'block';
+            clone.style.visibility = 'visible';
+            clone.style.opacity = '1';
+            container.appendChild(clone);
+            document.body.appendChild(container);
+
+            // Wait 350ms for browser layout & font/image painting
+            await new Promise(resolve => setTimeout(resolve, 350));
+
+            const opt = {
+                margin: [5, 5, 5, 5],
+                filename: 'Omprasad_Bhaskar_Padwalkar_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2, 
+                    useCORS: true, 
+                    allowTaint: true,
+                    logging: false,
+                    scrollY: 0,
+                    scrollX: 0
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            await html2pdf().set(opt).from(container).save();
+        } catch (err) {
+            console.error('PDF generation error, falling back to print:', err);
+            window.print();
+        } finally {
+            if (container && container.parentNode) {
+                container.parentNode.removeChild(container);
+            }
+            isGenerating = false;
+            downloadResumeBtn.innerHTML = originalText;
+            if (window.feather) feather.replace();
+        }
     });
 }
 
