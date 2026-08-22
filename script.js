@@ -132,6 +132,7 @@ async function loadGitHubProjects() {
         'agroscan-ai': 'assets/images/agroscan-ai-logo.jpg',
         '80th_independence_day': 'assets/images/independenceday-logo.jpg',
         '80th-independence-day': 'assets/images/independenceday-logo.jpg',
+        'lifeos': 'assets/images/lifeos-logo.svg',
         'omprasad-portfolio': 'assets/images/portfolio-website-logo.jpg'
     };
 
