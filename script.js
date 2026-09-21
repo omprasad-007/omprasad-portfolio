@@ -118,23 +118,60 @@ function escapeHTML(str) {
         .replace(/'/g, '&#039;');
 }
 
+// Create a meaningful cover when a repository does not have a dedicated local image.
+// This keeps every card visually tied to the project's title and domain instead of
+// reusing the portfolio image for unrelated work.
+function createProjectCover(title, projectText) {
+    const coverThemes = [
+        { keywords: ['secure', 'payment', 'fraud', 'security', 'auth'], label: 'SECURE SYSTEM', icon: '✦', start: '#0f172a', end: '#155e75', accent: '#67e8f9' },
+        { keywords: ['agri', 'farm', 'crop', 'plant', 'krishi', 'food'], label: 'AGRITECH', icon: '◆', start: '#17351d', end: '#356b2b', accent: '#bef264' },
+        { keywords: ['ai', 'ml', 'machine learning', 'vision', 'data', 'analytics'], label: 'AI & DATA', icon: '◈', start: '#24124d', end: '#5b21b6', accent: '#c4b5fd' },
+        { keywords: ['shop', 'store', 'ecommerce', 'e-commerce', 'bakery', 'order'], label: 'DIGITAL COMMERCE', icon: '▣', start: '#4a1d12', end: '#9a3412', accent: '#fdba74' },
+        { keywords: ['birthday', 'wish', 'independence', 'event', 'festival'], label: 'INTERACTIVE EXPERIENCE', icon: '✳', start: '#4c1239', end: '#9d174d', accent: '#f9a8d4' },
+        { keywords: ['portfolio', 'website', 'web', 'frontend', 'ui'], label: 'WEB EXPERIENCE', icon: '⌘', start: '#102a43', end: '#1d4ed8', accent: '#93c5fd' },
+        { keywords: ['learn', 'course', 'student', 'education', 'summer', 'gsoc'], label: 'LEARNING PROJECT', icon: '⌁', start: '#3f2a08', end: '#a16207', accent: '#fde68a' }
+    ];
+    const theme = coverThemes.find(item => item.keywords.some(keyword => projectText.includes(keyword)))
+        || { label: 'SOFTWARE PROJECT', icon: '◇', start: '#172554', end: '#4338ca', accent: '#a5b4fc' };
+    const safeTitle = String(title).slice(0, 38).replace(/[&<>"']/g, '');
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="${safeTitle} project cover">
+        <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${theme.start}"/><stop offset="1" stop-color="${theme.end}"/></linearGradient></defs>
+        <rect width="1600" height="900" fill="url(#bg)"/>
+        <circle cx="1350" cy="150" r="320" fill="${theme.accent}" opacity=".12"/><circle cx="150" cy="820" r="260" fill="${theme.accent}" opacity=".09"/>
+        <path d="M0 720 C380 590 800 930 1600 610 L1600 900 L0 900Z" fill="#020617" opacity=".25"/>
+        <text x="110" y="160" fill="${theme.accent}" font-family="Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="8">${theme.label}</text>
+        <text x="110" y="490" fill="white" font-family="Arial, sans-serif" font-size="94" font-weight="700">${safeTitle}</text>
+        <text x="110" y="560" fill="white" opacity=".72" font-family="Arial, sans-serif" font-size="30">Built with purpose · Explore the project</text>
+        <text x="1330" y="690" fill="${theme.accent}" font-family="Arial, sans-serif" font-size="190" font-weight="700" text-anchor="middle">${theme.icon}</text>
+    </svg>`;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
 // Dynamic GitHub Repos Analyzer & Auto-Sync
 async function loadGitHubProjects() {
     const GITHUB_USERNAME = 'omprasad-007';
     const wrapper = document.querySelector('.projects-slider .swiper-wrapper');
     if (!wrapper) return;
 
-    // Asset image map for known projects
-    const knownImages = {
-        'securepay-ai': 'assets/images/securepay-ai-logo.jpg',
-        'krishisetu': 'assets/images/krishisetu-logo.jpg',
-        'bharatkrishi': 'assets/images/krishisetu-logo.jpg',
-        'agroscan-ai': 'assets/images/agroscan-ai-logo.jpg',
-        '80th_independence_day': 'assets/images/independenceday-logo.jpg',
-        '80th-independence-day': 'assets/images/independenceday-logo.jpg',
-        'lifeos': 'assets/images/lifeos-logo.svg',
-        'omprasad-portfolio': 'assets/images/portfolio-website-logo.jpg'
-    };
+    // Every public project has a dedicated local cover. Keep exact project matches
+    // before broad domain keywords so a related description cannot select the wrong image.
+    const projectImages = [
+        { keywords: ['agroscan'], image: 'assets/images/agroscan-ai-logo.jpg' },
+        { keywords: ['personalized_birthday_wish', 'birthday'], image: 'assets/images/birthday-wish-cover.svg' },
+        { keywords: ['80th_independence', '80th-independence', 'independence'], image: 'assets/images/independenceday-logo.jpg' },
+        { keywords: ['krishnaarjun', 'bakers', 'bakery'], image: 'assets/images/project-ecommerce.png' },
+        { keywords: ['bharatkrishi', 'krishisetu', 'krishi'], image: 'assets/images/krishisetu-logo.jpg' },
+        { keywords: ['lifeos', 'life os'], image: 'assets/images/lifeos-cover-v2.jpg' },
+        { keywords: ['securepay', 'secure-code'], image: 'assets/images/securepay-ai-logo.jpg' },
+        { keywords: ['omprasad-portfolio', 'portfolio'], image: 'assets/images/portfolio-website-logo.jpg' },
+        { keywords: ['swargiri'], image: 'assets/images/swargiri-cover.svg' },
+        { keywords: ['virehire'], image: 'assets/images/virehire-cover-v2.jpg' },
+        { keywords: ['session', 'review'], image: 'assets/images/session-review-cover-v2.jpg' },
+        { keywords: ['summer-code', 'summer code', 'gsoc'], image: 'assets/images/summer-code-cover.svg' },
+        { keywords: ['payment', 'security'], image: 'assets/images/securepay-ai-logo.jpg' },
+        { keywords: ['farmer', 'agri', 'crop'], image: 'assets/images/krishisetu-logo.jpg' },
+        { keywords: ['ecommerce', 'e-commerce', 'ordering', 'shop'], image: 'assets/images/project-ecommerce.png' }
+    ];
 
     try {
         const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
@@ -143,10 +180,12 @@ async function loadGitHubProjects() {
         const repos = await response.json();
         if (!Array.isArray(repos) || repos.length === 0) return;
 
-        // Filter valid projects (exclude forks, archived, or user profile readme repo)
+        // Show only explicitly public repositories. Private repositories never enter the slider.
         const validRepos = repos.filter(repo => {
             const nameLower = repo.name.toLowerCase();
-            return !repo.fork && !repo.archived && nameLower !== GITHUB_USERNAME.toLowerCase();
+            const isPublic = repo.private === false && repo.visibility === 'public';
+            return isPublic && !repo.fork && !repo.archived
+                && nameLower !== GITHUB_USERNAME.toLowerCase();
         });
 
         if (validRepos.length === 0) return;
@@ -174,6 +213,7 @@ async function loadGitHubProjects() {
                 title = 'Portfolio Website';
             }
 
+            const coverTitle = title;
             title = escapeHTML(title);
 
             // Description
@@ -199,19 +239,12 @@ async function loadGitHubProjects() {
             });
             if (techList.length === 0) techList.push('Web App', 'Engineering');
 
-            // Image matching
-            let imgSrc = knownImages[nameLower];
-            if (!imgSrc) {
-                for (const key in knownImages) {
-                    if (nameLower.includes(key)) {
-                        imgSrc = knownImages[key];
-                        break;
-                    }
-                }
-            }
-            if (!imgSrc) {
-                imgSrc = 'assets/images/project-portfolio.png'; // Clean default preview image
-            }
+            // Use both the repository name and description so related projects receive the right cover.
+            const projectText = `${nameLower} ${String(repo.description || '').toLowerCase()} ${topicsLower.join(' ')}`;
+            const matchedImage = projectImages.find(project =>
+                project.keywords.some(keyword => projectText.includes(keyword))
+            );
+            const imgSrc = matchedImage ? matchedImage.image : createProjectCover(coverTitle, projectText);
 
             // Tech stack badges HTML
             const techStackHtml = techList.slice(0, 4).map(t => `<span>${escapeHTML(t)}</span>`).join('');

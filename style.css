@@ -2,17 +2,17 @@
 :root {
   /* Futuristic Dark Theme (Default) */
   --hue: 220; 
-  --bg-color: #0d0c22;
+    --bg-color: #000000;
   --text-color: #e0e0e0;
   --text-color-light: #b0b0b0;
-  --card-bg-color: hsla(230, 20%, 15%, 0.5);
-  --border-color: hsla(230, 20%, 30%, 0.8);
+    --card-bg-color: hsla(210, 10%, 6%, 0.82);
+    --border-color: hsla(210, 10%, 24%, 0.8);
   --primary-color: #00BFFF; /* Electric Blue */
-  --secondary-color: #FF00FF; /* Neon Pink */
-  --gradient-1: #4a00e0; /* Purple */
-  --gradient-2: #8e2de2; /* Lighter Purple */
-  --shadow-color: hsla(220, 40%, 4%, 0.4);
-  --glow-color: hsla(300, 100%, 70%, 0.6);
+    --secondary-color: #34414b; /* Graphite Blue */
+    --gradient-1: #030405; /* Black Aura */
+    --gradient-2: #0d1114; /* Charcoal Highlight */
+    --shadow-color: hsla(220, 40%, 2%, 0.7);
+    --glow-color: hsla(200, 45%, 55%, 0.35);
 
   /* Typography - Fluid Sizing */
   --ff-primary: 'Poppins', sans-serif;
@@ -63,7 +63,9 @@ html {
 body {
   font-family: var(--ff-primary);
   font-size: var(--fs-normal);
-  background-color: var(--bg-color);
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at 18% 12%, rgba(78, 93, 104, 0.06), transparent 30%),
+        radial-gradient(circle at 82% 78%, rgba(0, 191, 255, 0.025), transparent 28%);
   color: var(--text-color);
   line-height: 1.6;
   transition: background-color 0.4s, color 0.4s;
@@ -161,7 +163,7 @@ section {
 .blob {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.3;
+    opacity: 0.2;
     filter: blur(80px);
 }
 .blob:nth-child(1) {
@@ -170,15 +172,15 @@ section {
     background: var(--gradient-1);
     top: -100px;
     left: -100px;
-    animation: move 15s infinite alternate;
+    animation: auraDriftOne 18s ease-in-out infinite alternate;
 }
 .blob:nth-child(2) {
     width: 300px;
     height: 300px;
-    background: var(--primary-color);
+    background: #080b0d;
     bottom: 0;
     right: 0;
-    animation: move 20s infinite alternate-reverse;
+    animation: auraDriftTwo 24s ease-in-out 1s infinite alternate;
 }
 .blob:nth-child(3) {
     width: 250px;
@@ -186,15 +188,42 @@ section {
     background: var(--secondary-color);
     top: 40%;
     left: 30%;
-    animation: move 12s infinite alternate;
+    animation: auraDriftThree 16s ease-in-out 2s infinite alternate;
 }
 
-@keyframes move {
+@keyframes auraDriftOne {
     from {
         transform: translate(0, 0) scale(1);
     }
+    50% {
+        transform: translate(65px, 35px) scale(1.12);
+    }
     to {
-        transform: translate(100px, -50px) scale(1.2);
+        transform: translate(120px, -45px) scale(1.22);
+    }
+}
+
+@keyframes auraDriftTwo {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-55px, -35px) scale(1.14);
+    }
+    to {
+        transform: translate(-100px, 45px) scale(1.24);
+    }
+}
+
+@keyframes auraDriftThree {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(35px, -45px) scale(1.16);
+    }
+    to {
+        transform: translate(-45px, 55px) scale(0.92);
     }
 }
 
@@ -692,8 +721,19 @@ section {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 0.35rem;
+    padding: 0;
     position: relative;
+    isolation: isolate;
+}
+
+.project-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 191, 255, 0.12), transparent 42%, rgba(255, 0, 255, 0.1));
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.4s ease;
 }
 
 [data-theme='light'] .project-image-wrapper {
@@ -703,13 +743,18 @@ section {
 .project-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     transition: transform 0.4s ease;
-    border-radius: calc(var(--border-radius) - 0.25rem);
+    border-radius: 0;
+    filter: saturate(1.08) contrast(1.03);
 }
 
 .project-card:hover .project-image-wrapper img {
-    transform: scale(1.03);
+    transform: scale(1.06);
+}
+
+.project-card:hover .project-image-wrapper::after {
+    opacity: 0.5;
 }
 
 .project-content {
